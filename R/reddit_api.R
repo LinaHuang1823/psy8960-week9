@@ -44,4 +44,7 @@ ggplot(rstats_tbl, aes(x = upvotes, y = comments)) +
     y = "Comments"
   )
 #Analysis
-
+# Calculate correlation and p-value
+correlation_test <- cor.test(rstats_tbl$upvotes, rstats_tbl$comments)
+correlation_test$estimate
+correlation_test$p.value
