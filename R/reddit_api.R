@@ -36,5 +36,12 @@ if (http_status(response)$message == "OK") {
 }
 
 #Visualization
+ggplot(rstats_tbl, aes(x = upvotes, y = comments)) +
+  geom_point() +
+  labs(
+    title = "Relationship between Upvotes and Comments",
+    x = "Upvotes",
+    y = "Comments"
+  )
 #Analysis
 
