@@ -3,7 +3,6 @@ library(jsonlite)
 library(tidyverse)
 library(rvest)
 
-
 #Data Import and Cleaning
 # Create list with all content from https://www.reddit.com/r/rstats/.json
 rstats_list <- fromJSON("https://www.reddit.com/r/rstats/.json")
@@ -37,4 +36,5 @@ if (http_status(response)$message == "OK") {
 }
 
 #Visualization
+#Analysis
 
