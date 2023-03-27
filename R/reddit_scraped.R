@@ -3,36 +3,27 @@ library(tidyverse)
 library(rvest)
 
 #Data Import and Cleaning
-# Scrape data from Reddit
-url <- "https://old.reddit.com/r/rstats/"
-rstats_html <- read_html(url)
-
-# Extract the required information
+# Create an xml_document object called rstats_html
+rstats_html <- read_html("https://old.reddit.com/r/rstats/")
+# Create rstats_tbl from rstats_html
 post_titles <- rstats_html %>%
   html_elements(".title a.title") %>%
   html_text()
-
+#extract votes
 upvotes <- rstats_html %>%
   html_elements(".midcol.unvoted .score.unvoted") %>%
   html_text() %>%
   str_replace("k", "000") %>%
   as.integer()
-
+#extract comment
 comments <- rstats_html %>%
   html_elements(".buttons .first a") %>%
   html_text() %>%
   str_extract("\\d+") %>%
   as.integer()
-
 # Create rstats_tbl
-rstats_tbl <- tibble(
-  post = post_titles,
-  upvotes = upvotes,
-  comments = comments
-)
-
-# Print first 25 rows
-print(head(rstats_tbl, 25))
+rstats_tbl <- tibble(post = post_titles,upvotes = upvotes,comments = comments)
+print(head(rstats_tbl, 25))# Print first 25 rows
 
 #Visualization
 # Create a scatterplot using ggplot with rstats_tbl as the data source
