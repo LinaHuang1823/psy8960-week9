@@ -14,16 +14,16 @@ upvotes <- rstats_html %>%
   html_elements(".midcol.unvoted .score.unvoted") %>%
   html_text() %>%
   str_replace("k", "000") %>%
-  as.integer()
+  as.integer() #convert the number to integer
 #extract comment
 comments <- rstats_html %>%
   html_elements(".buttons .first a") %>%
   html_text() %>%
   str_extract("\\d+") %>%
-  as.integer()
+  as.integer() #convert the number to integer
 # Create rstats_tbl
 rstats_tbl <- tibble(post = post_titles,upvotes = upvotes,comments = comments)
-print(head(rstats_tbl, 25))# Print first 25 rows
+print(head(rstats_tbl, 25)) # Print first 25 rows
 
 #Visualization
 # Create a scatterplot using ggplot with rstats_tbl as the data source
